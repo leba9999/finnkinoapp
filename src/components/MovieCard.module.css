@@ -1,0 +1,12 @@
+.card{
+    display: inline-block;
+    background-color: #1F1F1F;
+    color: #FFC800;
+    border-radius: 0.5em;
+}
+.OriginalTitle{
+    color: darkgray;
+}
+.portrait{
+    width: 50%;
+}
