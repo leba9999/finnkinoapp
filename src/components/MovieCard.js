@@ -13,9 +13,14 @@ function MovieCard(props){
     }
     return (
         <div className={classes.card} id={movie[0].value}>
-            <img className={classes.portrait} src={portrait}/>
-            <h3>{movie[1].value}</h3>
-            <p className={classes.OriginalTitle}>{movie[2].value}</p>
+            <div className={classes.content}>
+                <img className={classes.portrait} src={portrait}/>
+                <div className={classes.textContent}>
+                    <h3>{movie[1].value}</h3>
+                    <p className={classes.OriginalTitle}>{movie[2].value}</p>
+                    <p className={classes.Synopsis}>{movie[14].value}</p>
+                </div>
+            </div>
         </div>
     );
 }

@@ -1,0 +1,12 @@
+.Movies{
+    background-color: #070707;
+}
+h1{
+    color: white;
+}
+.content{
+    background-color: #151515;
+    margin: auto;
+    width: 80%;
+    max-width: 70em;
+}

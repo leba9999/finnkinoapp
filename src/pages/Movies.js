@@ -2,6 +2,7 @@
 import React from "react";
 import MovieCard from "../components/MovieCard";
 import XMLParser from 'react-xml-parser';
+import classes from "./Movies.module.css";
 
 class Movies extends React.Component{
     // Constructor
@@ -14,14 +15,12 @@ class Movies extends React.Component{
         };
     }
     componentDidMount() {
-        let responseDoc = null;
         fetch("https://www.finnkino.fi/xml/Events/").then((results) => {
             // results returns XML. Cast this to a string, then create
             // a new DOM object out of it! like this
             results
                 .text()
                 .then((str) => {
-                    responseDoc = new DOMParser().parseFromString(str, 'text/xml');
                     const jsonDataFromXml = new XMLParser().parseFromString(str);
                     console.log( jsonDataFromXml.getElementsByTagName('Event'));
                     this.setState({
@@ -32,13 +31,17 @@ class Movies extends React.Component{
     }
     render() {
         return (
-            <div className="Movies">
-                <h1>Movies</h1>
-                {
-                    this.state.event.map((item, index) => {
-                      return <MovieCard key={index} event={item}></MovieCard>
-                    })
-                }
+            <div className={classes.Movies} >
+                <div className={classes.content} >
+                    <h1>Elokuvat</h1>
+                    <input/>
+                    <button>Hae</button>
+                    {
+                        this.state.event.map((item, index) => {
+                          return <MovieCard key={index} event={item}></MovieCard>
+                        })
+                    }
+                </div>
             </div>
         );
     }
