@@ -1,0 +1,30 @@
+header nav{
+    background-color: #222222;
+
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+header nav::after{
+    clear: both;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+nav li {
+    float: left;
+}
+li a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+li a:hover,
+li a:active,
+li a.active {
+    color: #fff4d1;
+}
