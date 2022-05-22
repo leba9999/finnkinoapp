@@ -4,9 +4,10 @@ h3{
     font-size: 1.5em;
     margin-bottom: 0;
 }
+.link{
+    width: fit-content;
+}
 .content{
-    background-color: #1F1F1F;
-    border-radius: 0.5em;
     padding: 2px;
     margin: 0;
     display: flex;
@@ -20,7 +21,34 @@ h3{
     display: block;
     width: 100%;
     max-width: 60em;
+    background-color: #1F1F1F;
+    border-radius: 0.5em;
+    padding: 0.2em;
 }
+.buttonContainer{
+    text-align: right;
+    padding: 0.5em;
+}
+.orderTickets {
+    color: black;
+    background-color: #FFC800;
+    outline: 1px solid #FFC800;
+    border: solid black;
+    display: inline-block;
+    font-size: 1.5em;
+    text-decoration: none;
+    margin-bottom: 0;
+}
+.orderTickets:hover{
+    color: black;
+    background-color: #e1b000;
+    outline: 1px solid #e1b000;
+}.orderTickets:active{
+     color: white;
+     background-color: #151515;
+     outline: 1px solid #151515;
+     border-color: white;
+ }
 .OriginalTitle{
     color: darkgray;
     display: inline-block;
