@@ -1,0 +1,101 @@
+.Movies{
+    background-color: #070707;
+}
+h1{
+    color: white;
+}
+.content{
+    background-color: #151515;
+    margin: auto;
+    width: 80%;
+    max-width: 70em;
+}
+.images{
+    background-color: #151515;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: end;
+}
+.card{
+    margin: 2px auto;
+    display: block;
+    width: 100%;
+    max-width: 60em;
+    background-color: #1F1F1F;
+    border-radius: 0.5em;
+    padding: 0.2em;
+}
+.buttonContainer{
+    text-align: right;
+    padding: 0.5em;
+}
+.orderTickets {
+    color: black;
+    background-color: #FFC800;
+    outline: 1px solid #FFC800;
+    border: solid black;
+    display: inline-block;
+    font-size: 1.5em;
+    text-decoration: none;
+    margin-bottom: 0;
+}
+.orderTickets:hover{
+    color: black;
+    background-color: #e1b000;
+    outline: 1px solid #e1b000;
+}.orderTickets:active{
+     color: white;
+     background-color: #151515;
+     outline: 1px solid #151515;
+     border-color: white;
+ }
+.OriginalTitle{
+    color: darkgray;
+    display: inline-block;
+    margin-top: 0;
+}
+.bannerimg{
+    width: 100%;
+    min-height: 15em;
+    border-radius: 0.5em;
+    min-width: fit-content;
+    opacity: 0.5;
+    display: block;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    z-index: 0;
+}.banner{
+     width: 100%;
+     max-height: 20em;
+     overflow: hidden;
+     border-radius: 0.5em;
+     opacity: 0.5;
+     display: block;
+     grid-column-start: 1;
+     grid-column-end: 5;
+     grid-row-start: 1;
+     z-index: 0;
+ }
+.portrait{
+    margin: 0em 5em;
+    height: 15em;
+    border-radius: 0.5em;
+    display: block;
+    background-color: #1F1F1F;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    z-index: 2;
+}
+.Synopsis{
+    color: white;
+    display: inline-block;
+}
+.textContent{
+    margin: 0em 0em 0em 0.5em;
+    display: flex;
+    flex-direction: column;
+}
