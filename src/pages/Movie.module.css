@@ -1,5 +1,12 @@
 .Movies{
     background-color: #070707;
+    height: 100%;
+}
+h3{
+    color: #FFC800;
+    display: inline-block;
+    font-size: 1.5em;
+    margin: 0.5em 0 0.1em 0;
 }
 h1{
     color: white;

@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import XMLParser from 'react-xml-parser';
 import classes from "./Movie.module.css";
 import {Link, useParams} from "react-router-dom";
 import notFound from "../img/notfound.jpg";
 //https://www.educative.io/edpresso/how-to-create-a-loading-spinner-in-react
-import {Spinner, Tab, Tabs} from 'react-bootstrap';
+import {Spinner} from 'react-bootstrap';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import './tabs.css';
 
 function Movie(props) {
     const [movie, setMovie] = useState(null)
@@ -60,44 +61,45 @@ function Movie(props) {
                                 }
                             </div>
                             <p className={classes.OriginalTitle}>Kesto: {Math.floor(movie[4]?.value/60)}h {Math.round(Number('.'+(movie[4]?.value/60).toString().split('.')[1])*60)}min ({movie[4]?.value}min)</p>
-                            <Tabs bsStyle="Tabs" className={classes.navTabs} defaultActiveKey="profile" >
-                                <Tab eventKey="home" title="Home">
-                                    <p>Test Home</p>
-                                </Tab>
-                                <Tab eventKey="profile" title="Profile">
-                                    <p>Test profile</p>
-                                </Tab>
-                            </Tabs>
-                            <h3 className={classes.Synopsis}>Synopsis</h3>
-                            <p className={classes.Synopsis}>{movie[15]?.value}</p>
-                            {
-                                movie[18]?.children[0]?.children[4].value.includes("YoutubeVideo") || !movie[18]?.children[0]?.children[4].value.includes("Flash") ? (
-                                    <div>
-                                        <h3 className={classes.Tittle}>Traileri</h3>
-                                        <div className={classes.video_container}>
-                                            <iframe src={"https://www.youtube.com/embed/"+movie[18]?.children[0]?.children[1].value}>
-                                            </iframe >
+                            <Tabs defaultIndex={0}>
+                                <TabList>
+                                    <Tab>Info</Tab>
+                                    <Tab>Näytösajat</Tab>
+                                </TabList>
+                                <TabPanel>
+                                <h3 className={classes.Synopsis}>Synopsis</h3>
+                                <p className={classes.Synopsis}>{movie[15]?.value}</p>
+                                {
+                                    movie[18]?.children[0]?.children[4].value.includes("YoutubeVideo") || !movie[18]?.children[0]?.children[4].value.includes("Flash") ? (
+                                        <div>
+                                            <h3 className={classes.Tittle}>Traileri</h3>
+                                            <div className={classes.video_container}>
+                                                <iframe src={"https://www.youtube.com/embed/"+movie[18]?.children[0]?.children[1].value}>
+                                                </iframe >
+                                            </div>
                                         </div>
-                                    </div>
-                                ) : (
-                                    <video >
-                                        <source src={movie[18]?.children[0]?.children[1].value} type="video/mp4"/>
-                                        <source src="movie.ogg" type="video/ogg"/>
-                                        Your browser does not support the video tag.
-                                    </video >
-                                )
-                            }
-
-                            <Spinner animation="border" role="status"></Spinner>
+                                    ) : (
+                                        <video >
+                                            <source src={movie[18]?.children[0]?.children[1].value} type="video/mp4"/>
+                                            <source src="movie.ogg" type="video/ogg"/>
+                                            Your browser does not support the video tag.
+                                        </video >
+                                    )
+                                }
+                                </TabPanel>
+                                <TabPanel>
+                                    <h2>Any content 2</h2>
+                                </TabPanel>
+                            </Tabs>
                         </div>
-
                     </div>
                     <div className={classes.buttonContainer}>
                         <button className={classes.orderTickets}>Varaa liput...</button>
                     </div>
                 </div>
                 ) : (
-                    null
+
+                    <Spinner animation="border" role="status"></Spinner>
                 )}
 
         </div>
