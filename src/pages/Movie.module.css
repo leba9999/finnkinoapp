@@ -16,10 +16,10 @@ h1{
     margin: auto;
     width: 80%;
     max-width: 70em;
+    padding-bottom: 5px;
 }
 .images{
     background-color: #151515;
-    margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;

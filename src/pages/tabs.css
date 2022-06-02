@@ -10,19 +10,25 @@
 
 .react-tabs__tab {
     display: inline-block;
-    border: 1px solid transparent;
     border-bottom: none;
     bottom: -1px;
     position: relative;
     list-style: none;
     padding: 6px 12px;
     cursor: pointer;
+    background: #FFC800;
+    border-color: #FFC800;
+    font-weight: bold;
+    color: black;
+    border-radius: 5px 5px 0 0;
 }
 
 .react-tabs__tab--selected {
-    background: #fff;
-    border-color: #aaa;
-    color: black;
+    background: transparent;
+    font-weight: normal;
+    border: 1px solid black;
+    border-bottom: none;
+    color: white;
     border-radius: 5px 5px 0 0;
 }
 

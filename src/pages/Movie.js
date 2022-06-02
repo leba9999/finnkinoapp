@@ -13,6 +13,8 @@ function Movie(props) {
     const [loading, setLoading] = useState(false)
     const { id } = useParams();
     let portrait = notFound;
+    let title = "";
+    let ogTitle = "";
     let banner = null;
     let contentDescriptors = null;
     //useEffect second parameter [] causes useEffect to act as componentDidMount
@@ -35,6 +37,10 @@ function Movie(props) {
         portrait = movie[17]?.children[1]?.value || movie[17]?.children[0]?.value;
         banner = movie[17]?.children[4]?.value || movie[17]?.children[3]?.value;
         contentDescriptors = movie[21]?.children;
+
+        const parser = new DOMParser();
+        title = parser.parseFromString(`<!doctype html><body>${movie[1]?.value}`, 'text/html').body.textContent;
+        ogTitle = parser.parseFromString(`<!doctype html><body>${movie[2]?.value}`, 'text/html').body.textContent;
     }catch (e){
 
     }
@@ -50,8 +56,8 @@ function Movie(props) {
                             <img className={classes.portrait} src={portrait}/>
                         </div>
                         <div className={classes.textContent}>
-                            <h3>{movie[1]?.value}</h3>
-                            <p className={classes.OriginalTitle}>{movie[2]?.value}</p>
+                            <h3>{title}</h3>
+                            <p className={classes.OriginalTitle}>{ogTitle}</p>
                             <div>
                                 <img className={classes.contentDescriptor} src={movie[8]?.value} alt={movie[6]?.value || movie[7]?.value} title={movie[6]?.value || movie[7]?.value}/>
                                 {
@@ -63,7 +69,7 @@ function Movie(props) {
                             <p className={classes.OriginalTitle}>Kesto: {Math.floor(movie[4]?.value/60)}h {Math.round(Number('.'+(movie[4]?.value/60).toString().split('.')[1])*60)}min ({movie[4]?.value}min)</p>
                             <Tabs defaultIndex={0}>
                                 <TabList>
-                                    <Tab>Info</Tab>
+                                    <Tab>Tiedot</Tab>
                                     <Tab>Näytösajat</Tab>
                                 </TabList>
                                 <TabPanel>
@@ -89,12 +95,10 @@ function Movie(props) {
                                 </TabPanel>
                                 <TabPanel>
                                     <h2>Any content 2</h2>
+                                    <button className={classes.orderTickets}>Varaa liput...</button>
                                 </TabPanel>
                             </Tabs>
                         </div>
-                    </div>
-                    <div className={classes.buttonContainer}>
-                        <button className={classes.orderTickets}>Varaa liput...</button>
                     </div>
                 </div>
                 ) : (
