@@ -7,19 +7,37 @@ import notFound from "../img/notfound.jpg";
 import {Spinner} from 'react-bootstrap';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import './tabs.css';
+import ShowTime from "../components/ShowTime";
 
 function Movie(props) {
     const [movie, setMovie] = useState(null)
+    const [theaters, setTheaters] = useState(null)
+    const [theater, setTheater] = useState(null)
+    const [shows, setShows] = useState(null)
+    const [dates, setDates] = useState([])
+    let [date, setDate] = useState(null)
     const [loading, setLoading] = useState(false)
     const { id } = useParams();
+    const dateOptions = {
+        dateStyle: "short"
+    };
     let portrait = notFound;
     let title = "";
     let ogTitle = "";
     let banner = null;
     let contentDescriptors = null;
+    let dates_t = [];
     //useEffect second parameter [] causes useEffect to act as componentDidMount
     // https://medium.com/@timtan93/states-and-componentdidmount-in-functional-components-with-hooks-cac5484d22ad
     useEffect(() => {
+        for (let i = 0; i < 5; i++){
+            let date = new Date();
+            date.setDate(date.getDate()+i);
+            dates_t.push(date);
+        }
+        dates_t.push(null);
+        setDates(dates_t);
+        getShowTimes();
         fetch("https://www.finnkino.fi/xml/Events/?eventID="+ id).then((results) => {
             // results returns XML. Cast this to a string, then create
             // a new DOM object out of it! like this
@@ -27,12 +45,45 @@ function Movie(props) {
                 .text()
                 .then((str) => {
                     const jsonDataFromXml = new XMLParser().parseFromString(str);
-                    console.log( jsonDataFromXml.getElementsByTagName('Event'));
                     setMovie(jsonDataFromXml.getElementsByTagName('Event')[0].children);
                     setLoading(true);
                 });
         });
+        fetch("https://www.finnkino.fi/xml/TheatreAreas/").then((results) => {
+            // results returns XML. Cast this to a string, then create
+            // a new DOM object out of it! like this
+            return results
+                .text()
+                .then((str) => {
+                    const jsonDataFromXml = new XMLParser().parseFromString(str);
+                    setTheaters(jsonDataFromXml.getElementsByTagName('TheatreAreas')[0].children);
+                    getShowTimes();
+                });
+        });
+    },[date, theater])
+    useEffect(()=>{
+        setDate(dates_t[0])
     },[])
+    function getShowTimes(){
+        let d = parseInt(date) || parseInt(date) != 0 ? new Date(date) : null;
+        fetch(`https://www.finnkino.fi/xml/Schedule/?eventID=${id}${theater != null ? "&area=" + theater : "" }${d ? "&dt=" + ("0" + d.getDate()).slice(-2) + "." + ("0" + (d.getMonth()+1)).slice(-2) + "." + d.getFullYear(): "&nrOfDays=5"}`).then((results) => {
+            // results returns XML. Cast this to a string, then create
+            // a new DOM object out of it! like this
+            return results
+                .text()
+                .then((str) => {
+                    const jsonDataFromXml = new XMLParser().parseFromString(str);
+                    setShows(jsonDataFromXml.getElementsByTagName('Shows')[0].children);
+                    console.log(jsonDataFromXml);
+                });
+        });
+    }
+    function handleDates(a_date) {
+        setDate(a_date);
+    }
+    function handleTheater(a_theater){
+        setTheater(a_theater);
+    }
     try {
         portrait = movie[17]?.children[1]?.value || movie[17]?.children[0]?.value;
         banner = movie[17]?.children[4]?.value || movie[17]?.children[3]?.value;
@@ -95,14 +146,47 @@ function Movie(props) {
                                 </TabPanel>
                                 <TabPanel>
                                     <h2>Any content 2</h2>
-                                    <button className={classes.orderTickets}>Varaa liput...</button>
+                                    <label htmlFor="theaters">Valitse Teatteri:</label>
+                                    <select onChange={e => handleTheater(e.target.value)} name="cars" id="cars">
+                                        {
+                                            theaters ?
+                                                theaters.map((item, index) => {
+                                                    return (<option key={index} value={item.children[0].value}>{item.children[1].value}</option>)
+                                                }) : null
+                                        }
+                                    </select>
+                                    <label htmlFor="time">PV:</label>
+                                    <select onChange={e => handleDates(e.target.value)} name="time" id="time">
+                                        {
+                                            dates ?
+                                                dates.map((item, index) => {
+                                                    return (
+                                                        <option key={index} value={item ? item : 0}>
+                                                            {
+                                                                item ?
+                                                                    item.getDate() === new Date().getDate() ?
+                                                                        `Tänään, ` + item.toLocaleString('fi-FI', dateOptions)
+                                                                    :
+                                                                        item.toLocaleString('fi-FI', dateOptions)
+                                                                    :
+                                                                    `Kaikki päivät`
+                                                            }
+                                                        </option>)
+                                                }) : null
+                                        }
+                                    </select>
+                                    {
+                                        shows ?
+                                            shows.map((item, index) => {
+                                                return (<ShowTime key={index} event={item}></ShowTime>)
+                                            }) : null
+                                    }
                                 </TabPanel>
                             </Tabs>
                         </div>
                     </div>
                 </div>
                 ) : (
-
                     <Spinner animation="border" role="status"></Spinner>
                 )}
 
