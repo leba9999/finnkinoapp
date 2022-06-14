@@ -1,0 +1,46 @@
+.accordion {
+    background-color: #070707;
+    color: #FFC800;
+    cursor: pointer;
+    padding: 0.8em 0.5em 0.8em 0.2em;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #FFC800;
+    border-radius: 0.5em;
+    text-align: left;
+    outline: none;
+    font-size: 1.4em;
+    transition: 0.4s;
+}
+
+.active .accordion:hover {
+    background-color: transparent;
+}
+
+.panel {
+    padding: 0px;
+    display: none;
+    background-color: #070707;
+    overflow: hidden;
+    border-radius: 0.5em;
+}
+.active {
+    display: block;
+}
+.arrow {
+    border: solid #FFC800;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 0.3em;
+    float: right;
+    transition: 0.1s;
+}
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}

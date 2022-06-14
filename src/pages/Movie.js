@@ -8,12 +8,14 @@ import {Spinner} from 'react-bootstrap';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import './tabs.css';
 import ShowTime from "../components/ShowTime";
+import Accordion from "../components/Accordion";
 
 function Movie(props) {
     const [movie, setMovie] = useState(null)
     const [theaters, setTheaters] = useState(null)
     const [theater, setTheater] = useState(null)
     const [shows, setShows] = useState(null)
+    const [showsInTheaters, setShowsInTheaters] = useState(new Map())
     const [dates, setDates] = useState([])
     let [date, setDate] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -62,6 +64,21 @@ function Movie(props) {
         });
     },[date, theater])
     useEffect(()=>{
+        let tempMap = new Map();
+        if(!theaters || !shows){
+            return;
+        }
+        for(let i = 0; i < shows.length; i++){
+            if(tempMap.has(shows[i].children[25].value)){
+                tempMap.get(shows[i].children[25].value).push(shows[i]);
+            } else {
+                tempMap.set(shows[i].children[25].value, [shows[i]]);
+            }
+            //(showsInTheaters.set(shows[i].children[25].value, shows[i])
+        }
+        setShowsInTheaters(tempMap);
+    },[shows, theaters])
+    useEffect(()=>{
         setDate(dates_t[0])
     },[])
     function getShowTimes(){
@@ -74,7 +91,6 @@ function Movie(props) {
                 .then((str) => {
                     const jsonDataFromXml = new XMLParser().parseFromString(str);
                     setShows(jsonDataFromXml.getElementsByTagName('Shows')[0].children);
-                    console.log(jsonDataFromXml);
                 });
         });
     }
@@ -176,10 +192,17 @@ function Movie(props) {
                                         }
                                     </select>
                                     {
-                                        shows ?
-                                            shows.map((item, index) => {
-                                                return (<ShowTime key={index} event={item}></ShowTime>)
-                                            }) : null
+                                        showsInTheaters ?
+                                            [...showsInTheaters.values()].map(shows =>
+                                                <Accordion title={shows[0].children[27].value}>{
+                                                    shows.map((item, index) => {
+                                                            return (
+                                                                    <ShowTime key={index} event={item}></ShowTime>
+                                                            )
+                                                        })
+                                                    }
+                                                </Accordion>
+                                            ): null
                                     }
                                 </TabPanel>
                             </Tabs>
