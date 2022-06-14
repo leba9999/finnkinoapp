@@ -2,6 +2,7 @@ import classes from "./MovieCard.module.css";
 import notFound from "../img/notfound.jpg";
 import {Link} from "react-router-dom";
 import React from "react";
+import OrderButton from "./OrderButton";
 
 
 function MovieCard(props){
@@ -23,7 +24,7 @@ function MovieCard(props){
                 </div>
             </div>
             <div className={classes.buttonContainer}>
-                <button className={classes.orderTickets}>Varaa liput...</button>
+                <OrderButton/>
             </div>
         </div>
     );

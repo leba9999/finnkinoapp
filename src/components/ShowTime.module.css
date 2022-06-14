@@ -1,30 +1,25 @@
 .Event{
-    background-color: #070707;
+    background-color: #151515;
     border-radius: 0.5em;
     padding: 0.2em;
-    margin: 0.1em;
-}
-.orderTickets {
-    color: black;
-    background-color: #FFC800;
-    outline: 1px solid #FFC800;
-    border: solid black;
-    display: inline-block;
-    font-size: 1.5em;
-    text-decoration: none;
-    margin-bottom: 0;
-}
-.orderTickets:hover{
-    color: black;
-    background-color: #e1b000;
-    outline: 1px solid #e1b000;
-}
-.orderTickets:active{
-     color: white;
-     background-color: #151515;
-     outline: 1px solid #151515;
-     border-color: white;
+    margin: 0.2em 0.5em;
 }
 .TheaterHeader{
     color: white;
+}
+.date{
+    color: darkgray;
+    display: inline-block;
+    font-size: 1.2em;
+    margin-left: 0.5em;
+}
+.text{
+    color: darkgray;
+    display: block;
+    margin: 2px 0px;
+}
+
+.buttonContainer{
+    text-align: right;
+    padding: 0.5em;
 }

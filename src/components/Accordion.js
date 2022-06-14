@@ -1,4 +1,4 @@
-import classes from './accordion.module.css';
+import classes from './Accordion.module.css';
 import React, {useEffect, useState} from "react";
 
 function Accordion(props){
