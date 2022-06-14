@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import XMLParser from 'react-xml-parser';
 import classes from "./Movie.module.css";
-import {Link, useParams} from "react-router-dom";
+import { useSearchParams, useParams} from "react-router-dom";
 import notFound from "../img/notfound.jpg";
 //https://www.educative.io/edpresso/how-to-create-a-loading-spinner-in-react
 import {Spinner} from 'react-bootstrap';
@@ -19,7 +19,10 @@ function Movie(props) {
     const [dates, setDates] = useState([])
     let [date, setDate] = useState(null)
     const [loading, setLoading] = useState(false)
-    const { id } = useParams();
+    const { id } = useParams()
+    let [searchParams, setSearchParams] = useSearchParams();
+    console.log(id);
+    console.log(searchParams);
     const dateOptions = {
         dateStyle: "short"
     };
@@ -83,7 +86,7 @@ function Movie(props) {
     },[])
     function getShowTimes(){
         let d = parseInt(date) || parseInt(date) != 0 ? new Date(date) : null;
-        fetch(`https://www.finnkino.fi/xml/Schedule/?eventID=${id}${theater != null ? "&area=" + theater : "" }${d ? "&dt=" + ("0" + d.getDate()).slice(-2) + "." + ("0" + (d.getMonth()+1)).slice(-2) + "." + d.getFullYear(): "&nrOfDays=5"}`).then((results) => {
+        fetch(`https://www.finnkino.fi/xml/Schedule/?eventID=${id}${theater != null ? "&area=" + theater : "" }${d ? "&dt=" + ("0" + d.getDate()).slice(-2) + "." + ("0" + (d.getMonth()+1)).slice(-2) + "." + d.getFullYear(): "&nrOfDays=10"}`).then((results) => {
             // results returns XML. Cast this to a string, then create
             // a new DOM object out of it! like this
             return results
@@ -134,7 +137,8 @@ function Movie(props) {
                                 }
                             </div>
                             <p className={classes.OriginalTitle}>Kesto: {Math.floor(movie[4]?.value/60)}h {Math.round(Number('.'+(movie[4]?.value/60).toString().split('.')[1])*60)}min ({movie[4]?.value}min)</p>
-                            <Tabs defaultIndex={0}>
+                            <Tabs defaultIndex={searchParams.get("showtime") ? searchParams.get("showtime").includes("true") ? 1 : 0 : 0}>
+                                { console.log(movie)}
                                 <TabList>
                                     <Tab>Tiedot</Tab>
                                     <Tab>Näytösajat</Tab>
@@ -161,9 +165,9 @@ function Movie(props) {
                                 }
                                 </TabPanel>
                                 <TabPanel>
-                                    <h2>Any content 2</h2>
-                                    <label htmlFor="theaters">Valitse Teatteri:</label>
-                                    <select onChange={e => handleTheater(e.target.value)} name="cars" id="cars">
+                                    <h3 className={classes.Synopsis}>Näytösajat</h3>
+                                    <div></div>
+                                    <select className={classes.selection} onChange={e => handleTheater(e.target.value)} name="theaters" id="theaters">
                                         {
                                             theaters ?
                                                 theaters.map((item, index) => {
@@ -171,8 +175,7 @@ function Movie(props) {
                                                 }) : null
                                         }
                                     </select>
-                                    <label htmlFor="time">PV:</label>
-                                    <select onChange={e => handleDates(e.target.value)} name="time" id="time">
+                                    <select className={classes.selection} onChange={e => handleDates(e.target.value)} name="time" id="time">
                                         {
                                             dates ?
                                                 dates.map((item, index) => {

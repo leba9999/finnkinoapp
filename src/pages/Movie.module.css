@@ -38,26 +38,6 @@ h1{
     text-align: right;
     padding: 0.5em;
 }
-.orderTickets {
-    color: black;
-    background-color: #FFC800;
-    outline: 1px solid #FFC800;
-    border: solid black;
-    display: inline-block;
-    font-size: 1.5em;
-    text-decoration: none;
-    margin-bottom: 0;
-}
-.orderTickets:hover{
-    color: black;
-    background-color: #e1b000;
-    outline: 1px solid #e1b000;
-}.orderTickets:active{
-     color: white;
-     background-color: #151515;
-     outline: 1px solid #151515;
-     border-color: white;
- }
 .OriginalTitle{
     color: darkgray;
     display: inline-block;
@@ -135,4 +115,18 @@ h1{
 
 .nav-tabs .nav-link:hover{
     color: gray
+}
+.selection{
+    background-color: #070707;
+    margin: 0.5em 0;
+    color: white;
+    cursor: pointer;
+    padding: 0.8em 0.5em 0.8em 0.2em;
+    width: 50%;
+    border: none;
+    border-bottom: 1px solid #FFC800;
+    border-radius: 0.5em 0.5em 0 0;
+    text-align: left;
+    outline: none;
+    font-size: 1em;
 }

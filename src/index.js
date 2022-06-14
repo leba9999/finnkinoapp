@@ -14,7 +14,7 @@ root.render(
           <Routes>
               <Route path="/" element={<App />}>
                   <Route index element={<Movies/>}/>
-                  <Route path="movie/:id" element={<Movie/>}/>
+                  <Route path="movie/:id/" element={<Movie/>}/>
                   <Route path="theaters" element={<Theaters/>}/>
                   <Route path="about" element={<About/>}/>
               </Route>

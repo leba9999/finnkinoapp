@@ -1,0 +1,21 @@
+.orderTickets {
+    color: black;
+    background-color: #FFC800;
+    outline: 1px solid #FFC800;
+    border: solid black;
+    display: inline-block;
+    font-size: 1.5em;
+    text-decoration: none;
+    margin-bottom: 0;
+}
+.orderTickets:hover{
+    color: black;
+    background-color: #e1b000;
+    outline: 1px solid #e1b000;
+}
+.orderTickets:active{
+    color: white;
+    background-color: #151515;
+    outline: 1px solid #151515;
+    border-color: white;
+}
