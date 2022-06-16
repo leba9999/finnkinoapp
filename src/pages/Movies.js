@@ -41,8 +41,8 @@ function Movies(props){
         <div className={classes.Movies} >
             <div className={classes.content} >
                 <h1>Elokuvat</h1>
-                <input value={input} onInput={e => {setInput(e.target.value); console.log(e.target)}}/>
-                <button>Hae</button>
+                <input className={classes.selection} placeholder={"Hae elokuvaa..."} value={input} onInput={e => {setInput(e.target.value); console.log(e.target)}}/><button>Hae</button>
+
                 { state ?
                     state.map((item, index) => {
                       return movies[index] ? <MovieCard key={index} event={item}></MovieCard> : null

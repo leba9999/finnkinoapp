@@ -10,3 +10,17 @@ h1{
     width: 80%;
     max-width: 70em;
 }
+.selection{
+    background-color: #070707;
+    margin: 0.5em 0;
+    color: white;
+    cursor: pointer;
+    padding: 0.8em 0.5em 0.8em 0.2em;
+    width: 50%;
+    border: none;
+    border-bottom: 1px solid #FFC800;
+    border-radius: 0.5em 0.5em 0 0;
+    text-align: left;
+    outline: none;
+    font-size: 1em;
+}

@@ -1,5 +1,5 @@
 import classes from './ShowTime.module.css';
-import React, {useRef, useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import OrderButton from "./OrderButton";
 
 function ShowTime(props){
@@ -25,10 +25,10 @@ function ShowTime(props){
             <h3 className={classes.date}>{date.toLocaleString('fi-FI', dateOptions)}</h3>
             <div>
                 <p className={classes.text}>{event[29].value}</p>
-                <p className={classes.text}>Kieli: {event[35].children[0].value} { event[36].name.includes("SubtitleLanguage") ? `| Tekstitys: ${event[36].children[0].value} ${event[37].name.includes("SubtitleLanguage") ? `, ${event[37].children[0].value}`:``} ` : `` }</p>
+                <p className={classes.text}>Kieli: {event[35].children[0].value} { event[36].name.includes("SubtitleLanguage") ? `| Tekstitys: ${event[36].children[0].value}${event[37].name.includes("SubtitleLanguage") ?`, ${event[37].children[0].value}`:``} ` : `` }</p>
             </div>
             <div className={classes.buttonContainer}>
-                <OrderButton/>
+                <OrderButton event={event} id={event[14].value}/>
             </div>
         </div>
     );
