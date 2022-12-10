@@ -42,5 +42,9 @@
     ]
   },
   "devDependencies": {
+  },
+  "engines": {
+    "node": ">=16.0",
+    "npm": ">=6.5.x"
   }
 }
