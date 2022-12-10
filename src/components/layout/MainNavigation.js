@@ -11,9 +11,6 @@ function MainNavigation(){
                     <Link to='/'>Elokuvat</Link>
                 </li>
                 <li>
-                    <Link to='/theaters'>Teatterit</Link>
-                </li>
-                <li>
                     <Link to='/about'>Tiedot</Link>
                 </li>
             </ul>
