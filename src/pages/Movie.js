@@ -85,6 +85,7 @@ function Movie(props) {
         setDate(dates_t[0])
     },[])
     function getShowTimes(){
+        // Checks (parseInt) is all dates selected if it is then parseInt can parse number 0 else set new date based on selected date from selection
         let d = parseInt(date) || parseInt(date) != 0 ? new Date(date) : null;
         fetch(`https://www.finnkino.fi/xml/Schedule/?eventID=${id}${theater != null ? "&area=" + theater : "" }${d ? "&dt=" + ("0" + d.getDate()).slice(-2) + "." + ("0" + (d.getMonth()+1)).slice(-2) + "." + d.getFullYear(): "&nrOfDays=10"}`).then((results) => {
             // results returns XML. Cast this to a string, then create
@@ -215,7 +216,6 @@ function Movie(props) {
                 ) : (
                     <Spinner animation="border" role="status"></Spinner>
                 )}
-
         </div>
     );
 }

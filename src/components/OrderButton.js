@@ -8,8 +8,9 @@ function OrderButton(props){
     }, []);
 
     function handleClick(){
-        navigate("/movie/" + props.id + "/tickets", { state: { eventID: props.event[14].value, scheduleID: props.event[0].value } });
+        navigate(`/movie/${props.id}/tickets?scheduleid=${props.event[0].value}&showstart=${props.event[2].value}`);
     }
+    console.log(props.event);
     return (
         <div>
             <button onClick={ handleClick } className={classes.orderTickets}>Varaa liput...</button>
