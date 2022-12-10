@@ -38,17 +38,17 @@ function Movies(props){
         }
     }
     return (
-        <div className={classes.Movies} >
-            <div className={classes.content} >
-                <h1>Elokuvat</h1>
-                <input className={classes.selection} placeholder={"Hae elokuvaa..."} value={input} onInput={e => {setInput(e.target.value); console.log(e.target)}}/><button>Hae</button>
-
-                { state ?
-                    state.map((item, index) => {
-                      return movies[index] ? <MovieCard key={index} event={item}></MovieCard> : null
-                    }) : null
-                }
+        <div className={classes.content} >
+            <h1>Elokuvat</h1>
+            <div className={classes.controls} >
+                <input className={classes.selection} placeholder={"Hae elokuvaa..."} value={input} onInput={e => {setInput(e.target.value);}}/>
             </div>
+
+            { state ?
+                state.map((item, index) => {
+                  return movies[index] ? <MovieCard key={index} event={item}></MovieCard> : null
+                }) : null
+            }
         </div>
     );
 }

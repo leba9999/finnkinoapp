@@ -17,13 +17,11 @@ h3{
     overflow: hidden;
 }
 .card{
-    margin: 2px auto;
+    margin: 2px 0px;
     display: block;
     width: 100%;
-    max-width: 60em;
     background-color: #1F1F1F;
     border-radius: 0.5em;
-    padding: 0.2em;
 }
 .buttonContainer{
     text-align: right;

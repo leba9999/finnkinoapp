@@ -1,14 +1,19 @@
-.Movies{
-    background-color: #070707;
-}
-h1{
+.content > h1{
     color: white;
+    margin: 0;
+}
+.controls{
+    background-color: #1F1F1F;
+    border-radius: 0.5em;
+    padding: 0 0.2em;
 }
 .content{
     background-color: #151515;
     margin: auto;
     width: 80%;
     max-width: 70em;
+    border-radius: 0.5em;
+    padding: 1em 2em;
 }
 .selection{
     background-color: #070707;
