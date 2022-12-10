@@ -7,7 +7,7 @@ function ShowTimesButton(props){
     useEffect(() => {
     }, []);
     return (
-        <Link to={"/movie/" + props.id + "/?showtime=true"} className={classes.orderTickets}>Näytös ajat...</Link>
+        <Link to={"/movie/" + props.id + "/?showtime=true"} className={classes.orderTickets}>Näytösajat...</Link>
     );
 }
 export default ShowTimesButton;
