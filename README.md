@@ -4,7 +4,7 @@ Ensimmäinen React App projekti. Projektissa ideana oli luoda pieni klooni versi
 Kaikkia ominaisuuksia ja ideoita ei tullut toteutettua, koska projektissa pääidea kuitenkin oli vain opetella itsenäisesti Reactia.
 
 ## Demo
-Linkki demoon: [https://finnkino-app.herokuapp.com](https://finnkino-app.herokuapp.com)
+Linkki demoon: [https://users.metropolia.fi/~leevikos/finnkinoapp](https://users.metropolia.fi/~leevikos/finnkinoapp)
 
 ### API:
 - [Finnkino XML services](https://www.finnkino.fi/xml/)
